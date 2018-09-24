@@ -2,44 +2,29 @@ package com.velvn.algorithms;
 
 import com.velvn.algorithms.benchmark.Benchmark;
 import com.velvn.algorithms.generator.ArrayGenerator;
-import com.velvn.algorithms.generator.Generator;
-import com.velvn.algorithms.sort.bubble.BubbleSortWithOptimization;
-import com.velvn.algorithms.sort.bubble.BubbleSortWithPrimitiveArrayAndWithOptimization;
-import com.velvn.algorithms.sort.bubble.BubbleSortWithPrimitiveArrayAndWithoutOptimization;
-import com.velvn.algorithms.sort.bubble.BubbleSortWithoutOptimization;
+import com.velvn.algorithms.sort.bubble.BubbleSortWithFlag;
+import com.velvn.algorithms.sort.bubble.BubbleSortWithForOptimization;
+
+import com.velvn.algorithms.sort.bubble.BubbleSortWithoutForOptimization;
+import com.velvn.algorithms.sort.insert.InsertionSortWithBinarySearch;
+import com.velvn.algorithms.sort.insert.InsertionSortWithoutBinarySearch;
+import com.velvn.algorithms.sort.merge.MergeSort;
 
 import java.util.*;
 
 public class Demo {
     public static void main(String[] args) {
-        Generator<ArrayList<Integer>, Integer> generator = new ArrayGenerator();
-
         System.out.print("Enter array length = ");
         String arrayLength = new Scanner(System.in).nextLine();
 
-        ArrayList<ArrayList<Integer>> arrays = new ArrayList<>();
-        arrays.add(generator.generate(Integer.valueOf(arrayLength)));
-        arrays.add(generator.generate(Integer.valueOf(arrayLength)));
-
-        int[][] primitiveArrays = {makePrimitiveArray(generator.generate(Integer.valueOf(arrayLength))),
-                makePrimitiveArray(generator.generate(Integer.valueOf(arrayLength)))};
-        checkArraysIsSorted(primitiveArrays);
-        checkArraysIsSorted(arrays);
-
-        Algorithm bubbleSortWithoutOptimization = new BubbleSortWithoutOptimization(arrays.get(0));
-        Algorithm bubbleSortWithOptimization = new BubbleSortWithOptimization(arrays.get(1));
-        Algorithm bubbleSortWithPrimitiveArrayAndWithoutOptimization = new BubbleSortWithPrimitiveArrayAndWithoutOptimization(primitiveArrays[0]);
-        Algorithm bubbleSortWithPrimitiveArrayAndWithOptimization = new BubbleSortWithPrimitiveArrayAndWithOptimization(primitiveArrays[1]);
-
-
-        Benchmark benchmark = new Benchmark(bubbleSortWithoutOptimization,
-                bubbleSortWithOptimization,
-                bubbleSortWithPrimitiveArrayAndWithoutOptimization,
-                bubbleSortWithPrimitiveArrayAndWithOptimization);
+        ArrayGenerator generator = new ArrayGenerator(Integer.valueOf(arrayLength), false);
+        Benchmark benchmark = new Benchmark(new BubbleSortWithoutForOptimization(generator),
+                new BubbleSortWithForOptimization(generator),
+                new BubbleSortWithFlag(generator),
+                new InsertionSortWithoutBinarySearch(generator),
+                new InsertionSortWithBinarySearch(generator),
+                new MergeSort(generator));
         benchmark.benchmark();
-
-        checkArraysIsSorted(primitiveArrays);
-        checkArraysIsSorted(arrays);
     }
 
     private static boolean isSorted(ArrayList<Integer> array) {

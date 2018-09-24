@@ -1,16 +1,35 @@
 package com.velvn.algorithms.generator;
 
-import com.velvn.algorithms.generator.Generator;
+import com.velvn.algorithms.Array;
 
-import java.util.ArrayList;
+public class ArrayGenerator implements DataGenerator {
 
-public class ArrayGenerator implements Generator<ArrayList<Integer>,Integer> {
+    private final int length;
+
+    private final boolean asc;
+
+    public ArrayGenerator(int length, boolean asc) {
+        this.length = length;
+        this.asc = asc;
+    }
+
     @Override
-    public ArrayList<Integer> generate(Integer length) {
-        ArrayList<Integer> array = new ArrayList<>(length);
-        for(int i = 0; i < length; i++){
-            array.add(length - i);
+    public Array generate() {
+        int[] array = new int[length];
+        if (asc) {
+            for (int i = 0, len = array.length; i < len; i++) {
+                array[i] = i + 1;
+            }
+        } else {
+            for (int i = 0, len = array.length; i < len; i++) {
+                array[i] = len - i;
+            }
         }
-        return array;
+        return new Array(array);
+    }
+
+    @Override
+    public String info() {
+        return (asc ? "ASC" : "DESC") + ". Array length = " + length;
     }
 }

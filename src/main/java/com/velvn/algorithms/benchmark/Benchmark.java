@@ -17,11 +17,11 @@ public class Benchmark {
 
     public void benchmark(){
         for (Algorithm algorithm : algorithms) {
-            System.out.println(algorithm.info());
+            System.out.print(algorithm.info());
             LocalTime start = LocalTime.now();
             algorithm.execute();
             LocalTime end = LocalTime.now();
-            System.out.println("Execution time = " + Duration.between(start,end).toMillis() / 1000d + " seconds");
+            System.out.println(" Execution time = " + Duration.between(start,end).toMillis() / 1000d + " seconds");
         }
     }
 }
