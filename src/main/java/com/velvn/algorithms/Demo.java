@@ -9,6 +9,7 @@ import com.velvn.algorithms.sort.bubble.BubbleSortWithoutForOptimization;
 import com.velvn.algorithms.sort.insert.InsertionSortWithBinarySearch;
 import com.velvn.algorithms.sort.insert.InsertionSortWithoutBinarySearch;
 import com.velvn.algorithms.sort.merge.MergeSort;
+import com.velvn.algorithms.sort.quick.QuickSort;
 
 import java.util.*;
 
@@ -23,7 +24,8 @@ public class Demo {
                 new BubbleSortWithFlag(generator),
                 new InsertionSortWithoutBinarySearch(generator),
                 new InsertionSortWithBinarySearch(generator),
-                new MergeSort(generator));
+                new MergeSort(generator),
+                new QuickSort(generator));
         benchmark.benchmark();
     }
 

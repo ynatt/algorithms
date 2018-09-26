@@ -4,6 +4,7 @@ import com.velvn.algorithms.Array;
 import com.velvn.algorithms.sort.insert.InsertionSortWithBinarySearch;
 import com.velvn.algorithms.sort.insert.InsertionSortWithoutBinarySearch;
 import com.velvn.algorithms.sort.merge.MergeSort;
+import com.velvn.algorithms.sort.quick.QuickSort;
 import junit.framework.TestCase;
 
 public class AllSortsTest extends TestCase {
@@ -52,6 +53,13 @@ public class AllSortsTest extends TestCase {
     public void testMergeSort(){
         for(Array array : arrays) {
             new MergeSort(array.getArray()).execute();
+            assertTrue(array.isSorted());
+        }
+    }
+
+    public void testQuickSort(){
+        for(Array array : arrays) {
+            new QuickSort(array.getArray()).execute();
             assertTrue(array.isSorted());
         }
     }
