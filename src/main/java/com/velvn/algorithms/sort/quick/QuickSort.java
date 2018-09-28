@@ -2,9 +2,11 @@ package com.velvn.algorithms.sort.quick;
 
 import com.velvn.algorithms.generator.ArrayGenerator;
 import com.velvn.algorithms.sort.SortAlgorithm;
+import java.util.Random;
 
 public class QuickSort extends SortAlgorithm {
 
+    private Random random = new Random();
 
     public QuickSort(ArrayGenerator generator) {
         super(generator);
@@ -22,14 +24,24 @@ public class QuickSort extends SortAlgorithm {
     private void sort(int start, int end) {
         if (start < end) {
             int middle = randomPartition(start, end);
-            sort(start, middle - 1);
+            int same = countSame(middle);
+            sort(start, middle - same);
             sort(middle + 1, end);
         }
     }
 
+    private int countSame(int index) {
+        int pivot = array[index];
+        int i = 1;
+        while ((index - i) != -1 && array[index - i] == pivot) {
+            i++;
+        }
+        return --i;
+    }
+
     private int randomPartition(int start, int end) {
-        int i = (int) Math.round(Math.random() * (end - start));
-        swap(end, i + start);
+        int i = start + random.nextInt(end - start + 1);
+        swap(end, i);
         return partition(start, end);
     }
 

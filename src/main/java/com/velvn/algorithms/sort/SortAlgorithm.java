@@ -2,6 +2,7 @@ package com.velvn.algorithms.sort;
 
 import com.velvn.algorithms.Algorithm;
 import com.velvn.algorithms.generator.ArrayGenerator;
+import com.velvn.algorithms.generator.AscOrDescArrayGenerator;
 
 public abstract class SortAlgorithm implements Algorithm {
 

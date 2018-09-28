@@ -4,6 +4,7 @@ import com.velvn.algorithms.Algorithm;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Benchmark {
     private final List<Algorithm> algorithms;
 
     public Benchmark(Algorithm... algorithms) {
-        this.algorithms = Arrays.asList(algorithms);
+        this.algorithms = new ArrayList<>(Arrays.asList(algorithms));
     }
 
     public void benchmark(){
@@ -23,5 +24,13 @@ public class Benchmark {
             LocalTime end = LocalTime.now();
             System.out.println(" Execution time = " + Duration.between(start,end).toMillis() / 1000d + " seconds");
         }
+    }
+
+    public void addAlgorithm(Algorithm algorithm){
+        algorithms.add(algorithm);
+    }
+
+    public void addAlgorithms(Algorithm... algorithms){
+        this.algorithms.addAll(Arrays.asList(algorithms));
     }
 }

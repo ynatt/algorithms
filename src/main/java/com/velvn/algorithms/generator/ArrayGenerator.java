@@ -6,30 +6,21 @@ public class ArrayGenerator implements DataGenerator {
 
     private final int length;
 
-    private final boolean asc;
-
-    public ArrayGenerator(int length, boolean asc) {
+    public ArrayGenerator(int length) {
         this.length = length;
-        this.asc = asc;
     }
 
     @Override
     public Array generate() {
-        int[] array = new int[length];
-        if (asc) {
-            for (int i = 0, len = array.length; i < len; i++) {
-                array[i] = i + 1;
-            }
-        } else {
-            for (int i = 0, len = array.length; i < len; i++) {
-                array[i] = len - i;
-            }
-        }
-        return new Array(array);
+        return new Array(new int[length]);
+    }
+
+    public int getLength() {
+        return length;
     }
 
     @Override
     public String info() {
-        return (asc ? "ASC" : "DESC") + ". Array length = " + length;
+        return "Blank array. Array length = " + length;
     }
 }

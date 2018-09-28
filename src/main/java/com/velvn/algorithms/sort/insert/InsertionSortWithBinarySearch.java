@@ -1,12 +1,12 @@
 package com.velvn.algorithms.sort.insert;
 
-import com.velvn.algorithms.generator.ArrayGenerator;
+import com.velvn.algorithms.generator.AscOrDescArrayGenerator;
 import com.velvn.algorithms.sort.SortAlgorithm;
 
 public class InsertionSortWithBinarySearch extends SortAlgorithm {
 
 
-    public InsertionSortWithBinarySearch(ArrayGenerator generator) {
+    public InsertionSortWithBinarySearch(AscOrDescArrayGenerator generator) {
         super(generator);
     }
 

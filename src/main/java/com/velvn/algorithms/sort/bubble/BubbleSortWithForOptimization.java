@@ -1,10 +1,10 @@
 package com.velvn.algorithms.sort.bubble;
 
-import com.velvn.algorithms.generator.ArrayGenerator;
+import com.velvn.algorithms.generator.AscOrDescArrayGenerator;
 
 public class BubbleSortWithForOptimization extends BubbleSortWithoutForOptimization {
 
-    public BubbleSortWithForOptimization(ArrayGenerator generator) {
+    public BubbleSortWithForOptimization(AscOrDescArrayGenerator generator) {
         super(generator);
     }
 
