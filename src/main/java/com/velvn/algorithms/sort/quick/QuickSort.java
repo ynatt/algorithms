@@ -60,6 +60,6 @@ public class QuickSort extends SortAlgorithm {
 
     @Override
     public String info() {
-        return "Quick sort. " + dataInfo;
+        return "Quick sort.";
     }
 }

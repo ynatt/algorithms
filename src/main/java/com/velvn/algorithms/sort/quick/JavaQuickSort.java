@@ -19,6 +19,6 @@ public class JavaQuickSort extends SortAlgorithm{
 
     @Override
     public String info() {
-        return "Quick sort from java libs. " + dataInfo;
+        return "Quick sort from java libs.";
     }
 }

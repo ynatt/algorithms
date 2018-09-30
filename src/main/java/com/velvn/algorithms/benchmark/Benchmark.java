@@ -1,29 +1,30 @@
 package com.velvn.algorithms.benchmark;
 
 import com.velvn.algorithms.Algorithm;
-
-import java.time.Duration;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Benchmark {
 
     private final List<Algorithm> algorithms;
 
+    private final ExecutionTimer timer;
+
     public Benchmark(Algorithm... algorithms) {
         this.algorithms = new ArrayList<>(Arrays.asList(algorithms));
+        timer = new ExecutionTimer();
     }
 
-    public void benchmark(){
+    public Table benchmark(){
+        Table table = new Table("Benchmark of algorithms (time in seconds)","Algorithm \\ Data");
         for (Algorithm algorithm : algorithms) {
-            System.out.print(algorithm.info());
-            LocalTime start = LocalTime.now();
+            table.addColumnHeader(algorithm.dataInfo());
+            table.addRow(algorithm.info());
+            timer.start();
             algorithm.execute();
-            LocalTime end = LocalTime.now();
-            System.out.println(" Execution time = " + Duration.between(start,end).toMillis() / 1000d + " seconds");
+            timer.end();
+            table.setCellValue(algorithm.info(), algorithm.dataInfo(), String.valueOf(timer.seconds()));
         }
+        return table;
     }
 
     public void addAlgorithm(Algorithm algorithm){

@@ -1,11 +1,11 @@
 package com.velvn.algorithms.sort.insert;
 
-import com.velvn.algorithms.generator.AscOrDescArrayGenerator;
+import com.velvn.algorithms.generator.ArrayGenerator;
 import com.velvn.algorithms.sort.SortAlgorithm;
 
 public class InsertionSortWithoutBinarySearch extends SortAlgorithm {
 
-    public InsertionSortWithoutBinarySearch(AscOrDescArrayGenerator generator) {
+    public InsertionSortWithoutBinarySearch(ArrayGenerator generator) {
         super(generator);
     }
 
@@ -30,6 +30,6 @@ public class InsertionSortWithoutBinarySearch extends SortAlgorithm {
 
     @Override
     public String info() {
-        return "Insertion sort without binary search. " + dataInfo;
+        return "Insertion sort without binary search.";
     }
 }

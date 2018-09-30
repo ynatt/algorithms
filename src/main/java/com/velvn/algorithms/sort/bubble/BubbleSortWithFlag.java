@@ -1,10 +1,10 @@
 package com.velvn.algorithms.sort.bubble;
 
-import com.velvn.algorithms.generator.AscOrDescArrayGenerator;
+import com.velvn.algorithms.generator.ArrayGenerator;
 
 public class BubbleSortWithFlag extends BubbleSortWithForOptimization {
 
-    public BubbleSortWithFlag(AscOrDescArrayGenerator generator) {
+    public BubbleSortWithFlag(ArrayGenerator generator) {
         super(generator);
     }
 
@@ -15,9 +15,12 @@ public class BubbleSortWithFlag extends BubbleSortWithForOptimization {
     @Override
     public void execute() {
         boolean sorted;
-        for (int i = 0, length = array.length - 1; i < length; i++) {
+        int length = array.length - 1;
+        int unsortedLength;
+        for (int i = 0; i < length; i++) {
             sorted = true;
-            for (int j = 1, unsortedLength = length - i + 1; j < unsortedLength; j++) {
+            unsortedLength = length - i + 1;
+            for (int j = 1; j < unsortedLength; j++) {
                 if (array[j - 1] > array[j]) {
                     swap(j - 1, j);
                     sorted = false;
@@ -29,6 +32,6 @@ public class BubbleSortWithFlag extends BubbleSortWithForOptimization {
 
     @Override
     public String info() {
-        return super.info() + ". With flag";
+        return super.info() + " With flag.";
     }
 }

@@ -21,8 +21,15 @@ public abstract class SortAlgorithm implements Algorithm {
     }
 
     protected void swap(int i, int j) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        if(i != j) {
+            int temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+
+    @Override
+    public String dataInfo() {
+        return dataInfo;
     }
 }

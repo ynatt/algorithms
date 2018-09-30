@@ -1,9 +1,16 @@
 package com.velvn.algorithms;
 
 import com.velvn.algorithms.benchmark.Benchmark;
+import com.velvn.algorithms.benchmark.Table;
+import com.velvn.algorithms.benchmark.TableView;
 import com.velvn.algorithms.generator.ArrayGenerator;
 import com.velvn.algorithms.generator.AscOrDescArrayGenerator;
 import com.velvn.algorithms.generator.RandomArrayGenerator;
+import com.velvn.algorithms.sort.bubble.BubbleSortWithFlag;
+import com.velvn.algorithms.sort.bubble.BubbleSortWithForOptimization;
+import com.velvn.algorithms.sort.bubble.BubbleSortWithoutForOptimization;
+import com.velvn.algorithms.sort.insert.InsertionSortWithBinarySearch;
+import com.velvn.algorithms.sort.insert.InsertionSortWithoutBinarySearch;
 import com.velvn.algorithms.sort.merge.MergeSort;
 import com.velvn.algorithms.sort.quick.JavaQuickSort;
 import com.velvn.algorithms.sort.quick.QuickSort;
@@ -20,72 +27,26 @@ public class Demo {
 
         ArrayGenerator descArrayGenerator = new AscOrDescArrayGenerator(arrayLength, false);
         ArrayGenerator randomArrayGenerator = new RandomArrayGenerator(arrayLength,maxNumber);
+        ArrayGenerator randomArrayGeneratorMultiplied = new RandomArrayGenerator(arrayLength * 2, maxNumber);
         Benchmark benchmark = new Benchmark();
-//
-//        benchmark.addAlgorithms(new BubbleSortWithoutForOptimization(generator),
-//                new BubbleSortWithForOptimization(generator), new BubbleSortWithFlag(generator));
-//
-//        benchmark.addAlgorithms(new InsertionSortWithoutBinarySearch(generator),
-//                new InsertionSortWithBinarySearch(generator));
-//
+
+        benchmark.addAlgorithms(new BubbleSortWithoutForOptimization(descArrayGenerator),
+                new BubbleSortWithoutForOptimization(randomArrayGenerator));
+
+        benchmark.addAlgorithms(new InsertionSortWithoutBinarySearch(randomArrayGenerator),
+                new InsertionSortWithBinarySearch(randomArrayGenerator));
+
         benchmark.addAlgorithms(new MergeSort(descArrayGenerator),
                 new MergeSort(randomArrayGenerator));
 
         benchmark.addAlgorithms(new QuickSort(descArrayGenerator),
                 new QuickSort(randomArrayGenerator),
+                new QuickSort(randomArrayGeneratorMultiplied),
                 new JavaQuickSort(descArrayGenerator),
-                new JavaQuickSort(randomArrayGenerator));
+                new JavaQuickSort(randomArrayGenerator),
+                new JavaQuickSort(randomArrayGeneratorMultiplied));
 
-        benchmark.benchmark();
-    }
-
-    private static boolean isSorted(ArrayList<Integer> array) {
-        for (int i = 0; i < array.size() - 1; i++) {
-            if (array.get(i) > array.get(i + 1)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static boolean isSorted(int[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
-            if (array[i] > array[i + 1]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static int[] makePrimitiveArray(ArrayList<Integer> arrayList) {
-        int[] result = new int[arrayList.size()];
-        for (int i = 0; i < arrayList.size(); i++) {
-            result[i] = arrayList.get(i);
-        }
-        return result;
-    }
-
-    private static void checkArraysIsSorted(ArrayList<ArrayList<Integer>> arrays) {
-        int index = 1;
-        for (ArrayList<Integer> array : arrays) {
-            if (isSorted(array)) {
-                System.out.println(index + " ArrayList is sorted");
-            } else {
-                System.out.println(index + " ArrayList is unsorted");
-            }
-            index++;
-        }
-    }
-
-    private static void checkArraysIsSorted(int[]... arrays) {
-        int index = 1;
-        for (int[] array : arrays) {
-            if (isSorted(array)) {
-                System.out.println(index + " Primitive array is sorted");
-            } else {
-                System.out.println(index + " Primitive array is unsorted");
-            }
-            index++;
-        }
+        TableView tableView = new TableView();
+        tableView.show(benchmark.benchmark());
     }
 }

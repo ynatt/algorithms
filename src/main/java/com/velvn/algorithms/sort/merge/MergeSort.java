@@ -61,6 +61,6 @@ public class MergeSort extends SortAlgorithm {
 
     @Override
     public String info() {
-        return "Merge sort. " + dataInfo;
+        return "Merge sort.";
     }
 }
