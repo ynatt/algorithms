@@ -3,13 +3,13 @@ package com.velvn.algorithms.sort.bubble;
 import com.velvn.algorithms.generator.ArrayGenerator;
 import com.velvn.algorithms.sort.SortAlgorithm;
 
-public class BubbleSortWithoutForOptimization extends SortAlgorithm {
+public class BubbleSort extends SortAlgorithm {
 
-    public BubbleSortWithoutForOptimization(ArrayGenerator generator) {
+    public BubbleSort(ArrayGenerator generator) {
         super(generator);
     }
 
-    public BubbleSortWithoutForOptimization(int[] array) {
+    public BubbleSort(int[] array) {
         super(array);
     }
 
@@ -24,6 +24,6 @@ public class BubbleSortWithoutForOptimization extends SortAlgorithm {
 
     @Override
     public String info() {
-        return "Bubble sort without for optimization.";
+        return "Bubble sort.";
     }
 }

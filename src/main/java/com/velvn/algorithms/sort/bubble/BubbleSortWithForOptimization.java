@@ -2,7 +2,7 @@ package com.velvn.algorithms.sort.bubble;
 
 import com.velvn.algorithms.generator.ArrayGenerator;
 
-public class BubbleSortWithForOptimization extends BubbleSortWithoutForOptimization {
+public class BubbleSortWithForOptimization extends BubbleSort {
 
     public BubbleSortWithForOptimization(ArrayGenerator generator) {
         super(generator);

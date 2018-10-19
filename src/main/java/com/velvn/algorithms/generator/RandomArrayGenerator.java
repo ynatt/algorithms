@@ -2,6 +2,7 @@ package com.velvn.algorithms.generator;
 
 import com.velvn.algorithms.Array;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class RandomArrayGenerator extends ArrayGenerator {
@@ -10,6 +11,8 @@ public class RandomArrayGenerator extends ArrayGenerator {
 
     private final int maxNumber;
 
+    private int[] array;
+
     public RandomArrayGenerator(int length, int maxNumber) {
         super(length);
         this.maxNumber = maxNumber;
@@ -17,11 +20,13 @@ public class RandomArrayGenerator extends ArrayGenerator {
 
     @Override
     public Array generate() {
-        int[] array = new int[getLength()];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = next();
+        if(array == null) {
+            array = new int[getLength()];
+            for (int i = 0; i < array.length; i++) {
+                array[i] = next();
+            }
         }
-        return new Array(array);
+        return new Array(array.clone());
     }
 
     private int next() {

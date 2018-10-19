@@ -1,6 +1,7 @@
 package com.velvn.algorithms.benchmark;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class TableView {
 
@@ -28,6 +29,7 @@ public class TableView {
         }
         builder.append("\n");
         int separatorSize = builder.length();
+        String result;
         for (String rowName : table.getRows().keySet()) {
             appendSeparator(builder, separatorSize);
             builder.append("\n");
@@ -35,7 +37,8 @@ public class TableView {
             Map<String, String> row = table.getRows().get(rowName);
             for (String header : table.getColumnHeaders()) {
                 builder.append(" | ");
-                builder.append(String.format("%-" + maxColumnsHeadersSize + "s", row.get(header)));
+                result = row.get(header);
+                builder.append(String.format("%-" + maxColumnsHeadersSize + "s", Objects.isNull(result)? "---":result));
             }
             builder.append("\n");
         }

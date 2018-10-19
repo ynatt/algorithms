@@ -1,14 +1,12 @@
 package com.velvn.algorithms;
 
 import com.velvn.algorithms.benchmark.Benchmark;
-import com.velvn.algorithms.benchmark.Table;
 import com.velvn.algorithms.benchmark.TableView;
 import com.velvn.algorithms.generator.ArrayGenerator;
 import com.velvn.algorithms.generator.AscOrDescArrayGenerator;
 import com.velvn.algorithms.generator.RandomArrayGenerator;
-import com.velvn.algorithms.sort.bubble.BubbleSortWithFlag;
 import com.velvn.algorithms.sort.bubble.BubbleSortWithForOptimization;
-import com.velvn.algorithms.sort.bubble.BubbleSortWithoutForOptimization;
+import com.velvn.algorithms.sort.bubble.BubbleSort;
 import com.velvn.algorithms.sort.insert.InsertionSortWithBinarySearch;
 import com.velvn.algorithms.sort.insert.InsertionSortWithoutBinarySearch;
 import com.velvn.algorithms.sort.merge.MergeSort;
@@ -30,21 +28,22 @@ public class Demo {
         ArrayGenerator randomArrayGeneratorMultiplied = new RandomArrayGenerator(arrayLength * 2, maxNumber);
         Benchmark benchmark = new Benchmark();
 
-        benchmark.addAlgorithms(new BubbleSortWithoutForOptimization(descArrayGenerator),
-                new BubbleSortWithoutForOptimization(randomArrayGenerator));
+        benchmark.addAlgorithms(new BubbleSort(descArrayGenerator),
+                new BubbleSort(randomArrayGenerator),
+                new BubbleSort(randomArrayGeneratorMultiplied));
 
         benchmark.addAlgorithms(new InsertionSortWithoutBinarySearch(randomArrayGenerator),
-                new InsertionSortWithBinarySearch(randomArrayGenerator));
+                new InsertionSortWithBinarySearch(randomArrayGenerator),
+                new InsertionSortWithBinarySearch(randomArrayGeneratorMultiplied),
+                new InsertionSortWithoutBinarySearch(randomArrayGeneratorMultiplied));
 
         benchmark.addAlgorithms(new MergeSort(descArrayGenerator),
-                new MergeSort(randomArrayGenerator));
+                new MergeSort(randomArrayGenerator),
+                new MergeSort(randomArrayGeneratorMultiplied));
 
         benchmark.addAlgorithms(new QuickSort(descArrayGenerator),
                 new QuickSort(randomArrayGenerator),
-                new QuickSort(randomArrayGeneratorMultiplied),
-                new JavaQuickSort(descArrayGenerator),
-                new JavaQuickSort(randomArrayGenerator),
-                new JavaQuickSort(randomArrayGeneratorMultiplied));
+                new QuickSort(randomArrayGeneratorMultiplied));
 
         TableView tableView = new TableView();
         tableView.show(benchmark.benchmark());
