@@ -15,13 +15,6 @@ public class AllSortsTest extends TestCase {
             new Array(new int[]{1,2,3,4,5,6,7,8,9,10}),
             new Array(new int[]{8,8,1,2,10,10,4,4,7,7,6,6,6,7,8,2,10})};
 
-    public void testBubbleSortWithoutForOptimization(){
-        for(Array array : arrays) {
-            new BubbleSortWithoutForOptimization(array.getArray()).execute();
-            assertTrue(array.isSorted());
-        }
-    }
-
     public void testBubbleSortWithForOptimization(){
         for(Array array : arrays) {
             new BubbleSortWithForOptimization(array.getArray()).execute();

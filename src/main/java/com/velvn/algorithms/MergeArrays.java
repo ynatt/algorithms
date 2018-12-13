@@ -1,6 +1,4 @@
-package com.velvn.algorithms.sort;
-
-import com.velvn.algorithms.Algorithm;
+package com.velvn.algorithms;
 
 import java.util.Arrays;
 
